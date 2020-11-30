@@ -1,0 +1,52 @@
+<html>
+  <head>
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+<!--      for a-terrain-->
+<!--
+      <script src="../js/aframe-orbit-controls-component.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/webpack-cesium/1.37.0/webpack.cesium.js"></script>
+      <script src="../../dist/aframe-aterrain-component.js"></script>
+      <script>
+          require('aframe');
+require('aframe-aterrain-component');
+      </script>
+-->
+  </head>
+  <body>
+    <a-scene>
+<!--
+        <a-entity a-terrain="follow:0; fovpad:2; latitude:33; longitude:-84; radius:1000; elevation:580000"></a-entity>
+<a-entity id="camera" camera="fov:45" mouse-cursor position="0 0 5000"></a-entity>
+-->
+      <a-plane position="0 0 -4" rotation="-90 0 0" width="40" height="40" color="#696969"></a-plane>
+
+<!--        TECH GREEN-->
+<!--        Tech Green grass area-->
+        <a-plane position="3 0.001 -4" rotation="-90 0 0" width="4" height="4" color="#00ff00"></a-plane>
+<!--        texts-->
+        <a-entity text="value: Tech Green; width: 3;" rotation="0 90 0" position="1 0.2 -4"></a-entity>
+        <a-entity text="value: Tech Green; width: 3;" rotation="0 90 0" position="5 0.2 -4"></a-entity>
+        
+<!--        CLOUGH UNDERGRADUATE COMMONS-->
+<!--        Clough building-->
+        <a-box position="-1 0.5 -3" rotation="0 0 0" color="#cccccc" depth="2" height="2" width="1"></a-box>
+<!--        texts-->
+        <a-entity text="value: Clough
+                        Undergraduate Commons; width: 3;" position="1 1 -4"></a-entity>
+        
+        <a-entity text="value: Clough
+                        Undergraduate Commons; width: 3;" position="1 1 -2"></a-entity>
+
+        
+        
+<!--        rotation -90 0 0 so it will be on a flat surface-->
+        
+<!--        The sky color-->
+<!--      <a-sky color="#87ceeb"></a-sky>-->
+        <!--        Twitter embed-->
+        <a-entity htmlembed position="-1 2 -3">
+            <h1>7890</h1>
+        </a-entity>
+    </a-scene>
+  </body>
+</html>
