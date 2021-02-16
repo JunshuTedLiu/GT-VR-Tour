@@ -1,0 +1,60 @@
+<html>
+    <head>
+        <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+
+        <script>
+            AFRAME.registerComponent('modify-materials', {
+                init: function () {
+                    // Wait for model to load.
+                    this.el.addEventListener('model-loaded', () => {
+                        // Grab the mesh / scene.
+                        const obj = this.el.getObject3D('mesh');
+                        // Go over the submeshes and modify materials we want.
+                        obj.traverse(node => {
+                            if (node.name.indexOf('ship') !== -1) {
+                                node.material.color.set('red');
+                            }
+                        });
+                    });
+                }
+            });
+        </script>
+        <!--      for a-terrain-->
+        <!--
+<script src="../js/aframe-orbit-controls-component.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/webpack-cesium/1.37.0/webpack.cesium.js"></script>
+<script src="../../dist/aframe-aterrain-component.js"></script>
+<script>
+require('aframe');
+require('aframe-aterrain-component');
+</script>
+-->
+    </head>
+    <body>
+
+        <a-scene background="color: #ECECEC">
+            <a-assets>
+                
+<!--                This is a cyberpunk example-->
+                <a-asset-item id="cityModel" src="https://cdn.aframe.io/test-models/models/glTF-2.0/virtualcity/VC.gltf"></a-asset-item>
+                
+<!--                Here comes GaTech-->
+<!--                Path: Models/Junshu_Bolter_Fall_2020_GT_Campus_LP_Model.obj-->
+                
+<!--
+                <a-asset-item id="gatech-lb-obj" src="Models/Junshu_Bolter_Fall_2020_GT_Campus_LP_Model.obj"></a-asset-item>
+                <a-asset-item id="gatech-lb-mtl" src="Models/Junshu_Bolter_Fall_2020_GT_Campus_LP_Model.mtl"></a-asset-item>
+-->
+                
+            </a-assets>
+            
+            <a-entity gltf-model="#cityModel" modify-materials></a-entity>
+            
+<!--            <a-obj-model src="#gatech-lb-obj" mtl="#gatech-lb-mtl"></a-obj-model>-->
+            
+<!--            <a-obj-model src="Models/Junshu_Bolter_Fall_2020_GT_Campus_LP_Model.obj" mtl="Models/Junshu_Bolter_Fall_2020_GT_Campus_LP_Model.mtl"></a-obj-model>-->
+            
+        </a-scene>
+
+    </body>
+</html>

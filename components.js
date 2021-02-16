@@ -1,0 +1,1 @@
+//Source: https://aframe.io/docs/1.1.0/core/component.html

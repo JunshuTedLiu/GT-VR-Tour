@@ -34,16 +34,24 @@ require('aframe-aterrain-component');
 
         <a-scene background="color: #ECECEC">
             <a-assets>
+                
 <!--                This is a cyberpunk example-->
 <!--                <a-asset-item id="cityModel" src="https://cdn.aframe.io/test-models/models/glTF-2.0/virtualcity/VC.gltf"></a-asset-item>-->
+                
 <!--                Here comes GaTech-->
 <!--                Path: Models/Junshu_Bolter_Fall_2020_GT_Campus_LP_Model.obj-->
+                
                 <a-asset-item id="gatech-lb-obj" src="Models/Junshu_Bolter_Fall_2020_GT_Campus_LP_Model.obj"></a-asset-item>
                 <a-asset-item id="gatech-lb-mtl" src="Models/Junshu_Bolter_Fall_2020_GT_Campus_LP_Model.mtl"></a-asset-item>
+                
             </a-assets>
+            
 <!--            <a-entity gltf-model="#cityModel" modify-materials></a-entity>-->
-<!--            <a-obj-model src="#gatech-lb-obj" mtl="#gatech-lb-mtl"></a-obj-model>-->
+            
+            <a-obj-model src="#gatech-lb-obj" mtl="#gatech-lb-mtl"></a-obj-model>
+            
             <a-obj-model src="Models/Junshu_Bolter_Fall_2020_GT_Campus_LP_Model.obj" mtl="Models/Junshu_Bolter_Fall_2020_GT_Campus_LP_Model.mtl"></a-obj-model>
+            
         </a-scene>
 
     </body>

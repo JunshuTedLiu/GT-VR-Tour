@@ -1,0 +1,53 @@
+<html>
+    <head>
+        <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+
+        <script>
+            AFRAME.registerComponent('modify-materials', {
+                init: function () {
+                    // Wait for model to load.
+                    this.el.addEventListener('model-loaded', () => {
+                        // Grab the mesh / scene.
+                        const obj = this.el.getObject3D('mesh');
+                        // Go over the submeshes and modify materials we want.
+                        obj.traverse(node => {
+                            if (node.name.indexOf('ship') !== -1) {
+                                node.material.color.set('red');
+                            }
+                        });
+                    });
+                }
+            });
+        </script>
+
+        <script>
+            const obj2gltf = require('obj2gltf');
+            const fs = require('fs');
+            obj2gltf('Models/Junshu_Bolter_Fall_2020_GT_Campus_LP_Model.obj')
+                .then(function(gltf) {
+                const data = Buffer.from(JSON.stringify(gltf));
+                fs.writeFileSync('Models/model.gltf', data);
+            });
+        </script>
+        <!--      for a-terrain-->
+        <!--
+<script src="../js/aframe-orbit-controls-component.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/webpack-cesium/1.37.0/webpack.cesium.js"></script>
+<script src="../../dist/aframe-aterrain-component.js"></script>
+<script>
+require('aframe');
+require('aframe-aterrain-component');
+</script>
+-->
+    </head>
+    <body>
+
+        <a-scene background="color: #ECECEC">
+            <a-assets>
+                <a-asset-item id="gatech-lb-gltf" src="Models/model.gltf"></a-asset-item>
+            </a-assets>
+            <a-entity gltf-model="#gatech-lb-gltf" modify-materials></a-entity>
+        </a-scene>
+
+    </body>
+</html>
