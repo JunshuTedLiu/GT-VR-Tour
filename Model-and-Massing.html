@@ -1,0 +1,296 @@
+<html>
+    <head>
+        <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+        
+        <script src="https://unpkg.com/aframe-text-geometry-component@^0.5.0/dist/aframe-text-geometry-component.min.js"></script> 
+
+        <script src="index.js"></script>
+
+        <script>
+            AFRAME.registerComponent('modify-materials', {
+                init: function () {
+                    // Wait for model to load.
+                    this.el.addEventListener('model-loaded', () => {
+                        // Grab the mesh / scene.
+                        const obj = this.el.getObject3D('mesh');
+                        // Go over the submeshes and modify materials we want.
+                        obj.traverse(node => {
+                            if (node.name.indexOf('ship') !== -1) {
+                                node.material.color.set('red');
+                            }
+                        });
+                    });
+                }
+            });
+        </script>
+
+        <!--      for a-terrain-->
+        <!--
+<script src="../js/aframe-orbit-controls-component.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/webpack-cesium/1.37.0/webpack.cesium.js"></script>
+<script src="../../dist/aframe-aterrain-component.js"></script>
+<script>
+require('aframe');
+require('aframe-aterrain-component');
+</script>
+-->
+
+        <script src="https://supereggbert.github.io/aframe-htmlembed-component/dist/build.js"></script>
+        <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="styles.css">
+        <script>
+            AFRAME.registerComponent('showbutton', {
+                schema: {
+                    'target': {type: 'selector'},
+                },
+                init: function () {
+                    var show=false;    
+                    this.el.addEventListener("click",()=>{
+                        if(show){
+                            this.data.target.setAttribute("visible","false");
+                            this.el.querySelector("a").innerHTML="Show Box";
+                        }else{
+                            this.data.target.setAttribute("visible","true");
+                            this.el.querySelector("a").innerHTML="Hide Box";
+                        }
+                        show=!show;
+                    });
+                }
+            });
+        </script>
+
+
+    </head>
+    <!--    <body onload="getLocation(); setCamera()">-->
+    <body>
+
+        <a-scene embedded background="color: #000099">
+            <!--                        <a-sky color="#6EBAA7"></a-sky>-->
+            <a-scene>
+                <a-assets>
+                    <img id="sky" src="assets/sky/purple-cyan-linear-gradient-1920x1080-c2-27b3b6-ff00ff-a-90-f-14.png">
+                </a-assets>
+                <a-sky src="#sky"></a-sky>
+            </a-scene>
+            <!--            Camera-->
+            <!--            https://stackoverflow.com/questions/36677671/aframe-set-camera-position-at-runtime-->
+            <!--            <a-entity id='cameraWrapper' position="-5.65955084199 -1 4.05578223457">-->
+            <a-entity id='cameraWrapper' position="-4.95 -2.3 2.35">
+                <a-camera></a-camera>
+            </a-entity>
+            <a-assets>
+                <a-asset-item id="gatech-lb-gltf" src="Models/Exported-GLTF/GT-Model.gltf"></a-asset-item>
+            </a-assets>
+            <a-entity gltf-model="#gatech-lb-gltf" modify-materials></a-entity>
+
+
+            <!--
+<a-assets>
+<img id="floor" src="assets/floor.png">
+<img id="tex1" src="assets/box.png">
+</a-assets>
+-->
+            <!--
+<a-plane material="src:#floor; repeat: 700 700; transparent: true;" height="500" width="500" rotation="-90 0 0"></a-plane>
+<a-sky color="#222222"></a-sky>
+-->
+            <a-entity id="cameraRig">
+                <!--
+<a-camera id="camera">
+</a-camera>
+-->
+                <a-entity id="mouseCursor" cursor="rayOrigin: mouse" raycaster="objects: .screen"></a-entity>
+                <a-entity laser-controls raycaster="objects: .screen;"></a-entity>
+            </a-entity>
+            <a-entity id="menu" class="screen menu dark" htmlembed="ppu:256" position="-2.712 2.5 -4.476" rotation="0 45 0">
+                <!--
+<h2>Pages</h2>
+<ul>
+<li><a href="#" class="button">Page 1</a></li>
+<li><a href="#slide2" class="button">Page 2</a></li>
+<li><a href="#slide3" class="button">Page 3</a></li>
+<li><a href="#slide4" class="button">Page 4</a></li>
+</ul>
+-->
+            </a-entity>
+            <a-entity id="main" class="screen dark main" htmlembed="ppu:256" position="0 2.5 -5">
+                <div id="page1">
+                    <h1>Georgia Tech Interactive VR Tour</h1>
+                    <p>Take a campus tour - in a way that you will absolutely like.
+                    </p>
+                    <p>
+                        When you are on campus, hold your phone and pointing at what in front of you. You will learn about what is around you.</p>
+                    <p>
+                        When you are at home, just visit this site and take a virtual tour just like you're here. If you have a VR headset, that would be even better.
+                    </p>
+                    <!--            <p>Twitter embed example:</p>-->
+                    <!--            <blockquote class="twitter-tweet"><p lang="en" dir="ltr">Please note: Crosland Tower and Clough Undergraduate Learning Commons are closed. Library virtual services are available 24/7 until further notice. For full information, visit: <a href="https://t.co/gTU9CcyRdy">https://t.co/gTU9CcyRdy</a></p>&mdash; GT Clough Commons (@GTClough) <a href="https://twitter.com/GTClough/status/1243508324185841666?ref_src=twsrc%5Etfw">March 27, 2020</a></blockquote>-->
+                    <a class="twitter-timeline" href="https://twitter.com/gtclough" data-tweet-limit="1" data-width="399" ></a>
+                    <a href="#slide2" class="button next">Next Page</a>
+                </div>
+                <div id="page2">
+                    <p>Coming soon! The following pages are just for testing.</p>
+                    <p>Twitter:</p>
+
+                    <div><blockquote class="twitter-tweet"><p lang="en" dir="ltr">Please note: Crosland Tower and Clough Undergraduate Learning Commons are closed. Library virtual services are available 24/7 until further notice. For full information, visit: <a href="https://t.co/gTU9CcyRdy">https://t.co/gTU9CcyRdy</a></p>&mdash; GT Clough Commons (@GTClough) <a href="https://twitter.com/GTClough/status/1243508324185841666?ref_src=twsrc%5Etfw">March 27, 2020</a></blockquote></div>
+
+                    <div><a class="twitter-timeline" href="https://twitter.com/gtclough" data-tweet-limit="1" data-width="399" ></a></div>
+
+                    <a href="#" class="button prev">Prev Page</a>
+                    <a href="#slide3" class="button next">Next Page</a>
+                </div>
+                <div id="page3">
+                    <a-entity showbutton="target:#box"><a class="button" href="javascript:void(0)">A button</a></a-entity>
+                    <a href="#slide2" class="button prev">Prev Page</a>
+                    <a href="#slide4" class="button next">Next Page</a>
+                </div>
+                <div id="page4">
+                    <h1>Header</h1>
+                    <ul>
+                        <li>List item 1</li>
+                        <li>List item 2</li>
+                    </ul>
+                    <a href="#slide3" class="button prev">Prev Page</a>
+                </div>
+            </a-entity>
+            <!--
+<a-entity id="menu" class="screen menu dark" htmlembed="ppu:256" position="2.712 2.5 -4.476" rotation="0 -45 0">
+<h2>Links</h2>
+<a class="imgLink" href="https://aframe.io/"><img src="assets/aframe.png" width="80" height="80"><div>A-Frame</div></a>
+<a class="imgLink" href="https://github.com/supereggbert/aframe-htmlembed-component"><img src="assets/github.png" width="80" height="80"><div>Github</div></a>
+<a class="imgLink" href="https://www.npmjs.com/package/aframe-htmlembed-component"><img src="assets/npm.png" width="80" height="80"><div>npm</div></a>
+</a-entity>
+-->
+            <a-entity id="menu" class="screen menu dark" htmlembed="ppu:256" position="2.712 2.5 -4.476" rotation="0 -45 0">
+                <h2>Workspaces</h2>
+                <ul>
+                    <li><a href="GaTech-3DModel-Test1.html" class="button">3D Model Test</a></li>
+                    <li><a href="GaTech-3DMassing-Test1.html" class="button">3D Massing Test</a></li>
+                    <li><a href="GaTech-ATerrain-Test1.html" class="button">A-Terrain Test</a></li>
+                    <li><a href="General-A-Frame-Test.html" class="button">General A-Frame Test</a></li>
+                    <li><a onclick="getLocation()" href="#" class="button">Get my location</a></li>
+                    <li><a onclick="setCamera()" href="#" class="button">Position me</a></li>
+                </ul>
+                <p>3D Model provided by IMAGINE lab.</p>
+            </a-entity>
+            <a-box material="src:#tex1" scale="0.5 0.5 0.5" position="0 0.5 -4" id="box" visible="false"></a-box>
+
+            <!--            Countdown-->
+            <!--            Package: https://www.npmjs.com/package/aframe-text-geometry-component-->
+            <a-entity text-geometry="value: GT VR Tour; size: 2" material="color: #EAAA00" rotation="0 70 0" position="-7 3.5 1"></a-entity>
+            
+            <a-entity text-geometry="value: Futuristic campus tour experience; size: 0.32" material="color: #1879DB" rotation="0 45 0" position="-7 2 1"></a-entity>
+            
+            <a-entity text-geometry="value: COMING VERY SOON; size: 0.5" material="color: #777777" rotation="0 45 0" position="-7 1 1"></a-entity>
+            
+            <a-entity text-geometry="value: 4.19.2021; size: 1" material="color: #B3A369" rotation="0 20 0" position="-7 -0.75 1"></a-entity>
+            
+            <a-entity text-geometry="value: DM MS Defense; size: 0.36" material="color: #717171" rotation="0 55 0" position="-1 -0.17 -1.2"></a-entity>
+            
+            <a-entity text-geometry="value: 10:50 AM, ROOM 1; size: 0.3" material="color: #717171" rotation="0 55 0" position="-1 -0.75 -1.2"></a-entity>
+
+
+            <!--            graphic design-->
+            
+<!--            student center-->
+            <a-entity text-geometry="value: R.I.P. Student Center; size: 0.4" material="color: red" rotation="0 90 0" position="-10 -1.5 7"></a-entity>
+            
+            <a-entity text="value: Campanile Fountain; width: 3; color:#000000" rotation="0 90 0" position="-7.90 -1 -0.9"></a-entity>
+            <a-box color="tomato" depth="0.2" height="0.3" width="1.3" rotation="0 90 0" position="-8 -1 0" material="side: double; transparent: true; opacity: 0.5"></a-box>
+            
+<!--            road-->
+            <a-cylinder color="cyan" height="0.5" radius="0.03" position="8.7 -1.8 2.8" material="side: double; transparent: true; opacity: 0.5"></a-cylinder>
+            
+            <a-entity text="value: Bobby Dodd Way NW; width: 0.65; color:#000000" position="9.055 -1.58 2.812"></a-entity>
+            <a-entity text="value: <                                             >; width: 0.5; color:#000000" position="8.983 -1.62 2.812"></a-entity>
+            <a-box color="tomato" depth="0.025" height="0.1" width="0.3" position="8.86 -1.6 2.8" material="side: double; transparent: true; opacity: 0.875"></a-box>
+            
+            <a-entity text="value: Cherry St NW; width: 0.65; color:#000000" position="8.712 -1.58 2.785" rotation="0 90 0"></a-entity>
+            <a-entity text="value: <                                             >; width: 0.5; color:#000000" position="8.712 -1.62 2.858" rotation="0 90 0"></a-entity>
+            <a-box color="tomato" depth="0.025" height="0.1" width="0.3" position="8.7 -1.6 2.97" material="side: double; transparent: true; opacity: 0.875" rotation="0 90 0"></a-box>
+
+            <!--            Crosland-->
+            <!--            bottom-->
+            <a-entity text="value: Crosland Tower; width: 3; color:#000000" position="11.15 -1.8 2.51"></a-entity>
+            <a-box color="tomato" depth="0.1" height="0.25" width="1.3" position="10.15 -1.8 2.46" material="side: double; color: #EF2D5E; transparent: true; opacity: 0.5"></a-box>
+            <!--            top-->
+            <a-entity text="value: Crosland Tower; width: 3; color:#000000" position="11.15 0.2 2.51"></a-entity>
+            <a-box color="tomato" depth="0.2" height="0.3" width="1.3" position="10.15 0.2 2.41"></a-box>
+<!--            3d-->
+            <a-entity text-geometry="value: CROSLAND; size: 0.08" material="color: #696969" rotation="0 270 0" position="9.79 -0.8 1.6"></a-entity>
+            <a-entity text-geometry="value: TOWER; size: 0.08" material="color: #696969" rotation="0 270 0" position="9.79 -0.95 1.6"></a-entity>
+            <a-entity text="value: (This is a library, too); width: 1.5; color:#eeeeee" rotation="0 270 0" position="9.79 -1.2 2.325"></a-entity>
+            
+            <!--            Tech Tower-->
+            <!--            bottom-->
+            <a-entity text="value: Tech Tower; width: 2; color:#000000" position="13.65 -1.5 15.51"></a-entity>
+            <a-box color="tomato" depth="0.1" height="0.25" width="0.7" position="12.89 -1.5 15.46" material="side: double; color: #EF2D5E; transparent: true; opacity: 0.5"></a-box>
+            <!--            top-->
+            <a-entity text="value: Crosland Tower; width: 3; color:#000000" position="11.15 0.2 2.51"></a-entity>
+            <a-box color="tomato" depth="0.2" height="0.3" width="1.3" position="10.15 0.2 2.41"></a-box>
+
+            <!--            Price Gilbert-->
+            <!--            bottom-->
+            <a-entity text="value: Price Gilbert Memorial Library; width: 2; color:#000000" position="8.92 -1.8 1.51"></a-entity>
+            <a-box color="tomato" depth="0.1" height="0.25" width="1.3" position="8.5 -1.8 1.46" material="side: double; color: #EF2D5E; transparent: true; opacity: 0.5"></a-box>
+            <!--            top-->
+            <a-entity text="value: Price Gilbert Memorial Library; width: 3; color:#000000" position="8 -0.2 1.51"></a-entity>
+            <a-box color="tomato" depth="0.2" height="0.3" width="2." position="7.37 -0.2 1.41"></a-box>
+<!--            3d-->
+            <a-entity text-geometry="value: THIS IS A LIBRARY; size: 0.2" material="color: #0b7987" rotation="0 180 0" position="8.5 -0.8 -1"></a-entity>
+            <a-entity text="value: It's actually called Price Gilbert Memorial Library, but who cares?; width: 2.5; color:#00c97f" rotation="0 180 0" position="7.28 -0.95 -1"></a-entity>
+            
+            <a-entity text-geometry="value: THIS IS ALSO A LIBRARY CALLED CLOUGH; size: 0.16" material="color: #2a2a2a" rotation="0 90 0" position="4.74 -1.3 -1"></a-entity>
+
+            <!--            Clough-->
+            <!--            Top-->
+            <a-entity text="value: Clough Undergraduate Commons; width: 3; color: #000000;" position="3.5 -0.8 1.51"></a-entity>
+            <a-box color="tomato" depth="0.2" height="0.3" width="2.2" position="3 -0.8 1.41"></a-box>
+
+            <!--            Skiles-->
+            <!--            Top-->
+            <a-entity text="value: Skiles Classroom Building; width: 3; color: #000000;" position="5.03 -0.8 7.51"></a-entity>
+            <a-box color="tomato" depth="0.2" height="0.3" width="1.75" position="4.3 -0.8 7.41"></a-box>
+
+            <a-entity text="value: Skiles Classroom Building; width: 3; color: #000000;" position="3.56 -0.8 3.61" rotation="0 180 0"></a-entity>
+            <a-box color="tomato" depth="0.2" height="0.3" width="1.75" position="4.3 -0.8 3.71"></a-box>
+            
+            <a-entity text-geometry="value: LMC; size: 0.4" material="color: #999999" rotation="0 225 0" position="2.35 -1.35 3.6"></a-entity>
+            
+            <a-entity text-geometry="value: SCHOOL OF LITERATURE, MEDIA, AND COMMUNICATION; size: 0.12" material="color: #a37a00" rotation="0 180 0" position="6.75 -1.35 3.6"></a-entity>
+
+            <a-entity text="value: On floor 3, we make with meanings.; width: 2; color: #000000;" position="5.38 -1.53 5.778" rotation="0 270 0"></a-entity>
+            
+            <a-entity text-geometry="value: DIGITAL MEDIA; size: 0.14" material="color: #0062a3" rotation="0 270 0" position="5.38 -1.38 4.82"></a-entity>
+
+            <!--
+<a-assets>
+<video id="library-welcome" autoplay loop="true" src="assets/video/Library.mp4"></video>
+</a-assets>
+-->
+            <!-- Using the asset management system. -->
+            <!--            library video-->
+            <!--  <a-video src="#library-welcome" width="4" height="2.25" position="8 1 0"></a-video>-->
+            <!--            Source: https://youtu.be/EF7EXCsRGFk-->
+
+            <!--
+<a-assets>
+<video id="this-is-the-place" autoplay loop="true" src="assets/video/Tech.mp4"></video>
+</a-assets>
+-->
+            <!-- Using the asset management system. -->
+            <!--            GT video-->
+            <!--  <a-video src="#this-is-the-place" width="16" height="9" position="0 3 -20"></a-video>-->
+            <!--            Source: https://youtu.be/UzjeXIjJ6sI-->
+
+        </a-scene>
+                <div class="UI">
+                    <div class="LocationButtons"><a onclick="getLocation()" href="#" class="button">Get my location</a>
+                    <a onclick="setCamera()" href="#" class="button">Position me</a></div>
+        
+                    
+                <p>GT VR Tour | Developer Testing Page | 3D Model provided by IMAGINE lab.</p>
+                    </div>
+
+    </body>
+</html>
