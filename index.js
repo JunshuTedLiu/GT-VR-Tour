@@ -49,3 +49,11 @@ function setCamera() {
     
     console.log("Camera updated.");
 }
+
+function birdView() {
+    document.querySelector('#cameraWrapper').setAttribute('position', {x:lonToAFrame, y:-2.3, z:latToAFrame});
+}
+
+function POVView() {
+    document.querySelector('#cameraWrapper').setAttribute('position', {x:lonToAFrame, y:-3.25, z:latToAFrame});
+}

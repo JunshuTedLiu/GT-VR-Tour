@@ -39,6 +39,12 @@
   overflow: hidden;
 }
 
+.mid {
+  width: 512px;
+  height: 768px;
+  overflow: hidden;
+}
+
 .menu {
   width: 256px;
   height: 768px;
