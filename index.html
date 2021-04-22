@@ -82,7 +82,7 @@ require('aframe-aterrain-component');
                 <!--            Camera-->
                 <!--            https://stackoverflow.com/questions/36677671/aframe-set-camera-position-at-runtime-->
                 <!--            <a-entity id='cameraWrapper' position="-5.65955084199 -1 4.05578223457">-->
-                <a-entity id='cameraWrapper' position="-4.95 -3.8 2.35">
+                <a-entity id='cameraWrapper' position="-4.95 -2.3 2.35">
                     <a-camera></a-camera>
                 </a-entity>
                 
@@ -274,6 +274,17 @@ require('aframe-aterrain-component');
                         <li><a onclick="setCamera()" href="http://library.gatech.edu/crosland-meet" class="button">Reserve a breakout room</a></li>
                     </ul>
                     <p>Be sure to wear a mask!</p>
+                </a-entity>
+                
+<!--                DM-->
+                <a-entity id="menu" class="screen dark mid" htmlembed="ppu:600" position="7 -1.2 3" rotation="0 115 0">
+                    <h2>School of Literature, Media, and Communication</h2>
+                    <h3>Humanistic Perspectives in a Technological World</h3>
+                    <p>We defines new models of intellectual inquiry and practice that bring diverse humanistic perspectives to bear on technological invention and innovation.</p>
+                    <ul>
+                        <li><a onclick="setCamera()" href="https://www.lmc.gatech.edu/" class="button">Learn more about School of LMC</a></li>
+                        <li><a onclick="setCamera()" href="https://www.facebook.com/lmciacgatech" class="button">Visit LMC's Facebook Page</a></li>
+                    </ul>
                 </a-entity>
                 
                 <a-box material="src:#tex1" scale="0.5 0.5 0.5" position="0 0.5 -4" id="box" visible="false"></a-box>
