@@ -82,7 +82,7 @@ require('aframe-aterrain-component');
                 <!--            Camera-->
                 <!--            https://stackoverflow.com/questions/36677671/aframe-set-camera-position-at-runtime-->
                 <!--            <a-entity id='cameraWrapper' position="-5.65955084199 -1 4.05578223457">-->
-                <a-entity id='cameraWrapper' position="-4.95 -2.3 2.35">
+                <a-entity id='cameraWrapper' position="-4.95 -3.8 2.35">
                     <a-camera></a-camera>
                 </a-entity>
                 
@@ -204,6 +204,19 @@ require('aframe-aterrain-component');
                 <a-entity text-geometry="value: Futuristic campus tour experience; size: 0.32" material="color: #1879DB" rotation="0 45 0" position="-7 2 1"></a-entity>
 
                 <a-entity text-geometry="value: 5.6.2021; size: 0.5" material="color: #B3A369" rotation="0 45 0" position="-7 1 1"></a-entity>
+                
+                <a-entity text-geometry="value: BUNGER-HENRY BUILDING; size: 0.25" material="color: #dfdfdf" rotation="0 90 0" position="-6 -1.3 -7.5"></a-entity>
+                
+                <a-entity id="menu" class="screen dark mid" htmlembed="ppu:600" position="-5.5 -1.3 -10.5" rotation="0 180 0">
+                    <h2>Bunger-Henry Building</h2>
+                    <h3>School of Electrical and Computer Engineering</h3>
+                    <p>Microsystems and optics and photonics research takes place here.</p>
+                    <p>778 Atlantic Drive NW, Atlanta, GA  30332</p>
+                    <ul>
+                        <li><a onclick="setCamera()" href="https://www.ece.gatech.edu/" class="button">Learn more about ECE</a></li>
+                    </ul>
+                    <p>Be sure to wear a mask!</p>
+                </a-entity>
 
 <!--
                 <a-entity text-geometry="value: 4.19.2021; size: 1" material="color: #B3A369" rotation="0 20 0" position="-7 -0.75 1"></a-entity>

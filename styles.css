@@ -45,6 +45,10 @@
   overflow: hidden;
 }
 
+h2 {
+    text-align: center;
+}
+
 .menu {
   width: 256px;
   height: 768px;
