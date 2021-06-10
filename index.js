@@ -5,8 +5,8 @@
 var lat;
 var lon;
 
-var latToAFrame = 2.35;
-var lonToAFrame = -4.95;
+var latToAFrame = 4;
+var lonToAFrame = 8.5;
 
 function getLocation() {
   if (navigator.geolocation) {
