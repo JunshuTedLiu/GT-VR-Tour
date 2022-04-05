@@ -62,7 +62,13 @@ require('aframe-aterrain-component');
 
     </head>
     <!--    <body onload="getLocation(); setCamera()">-->
-    <body>
+    <body onload="getLocation()">
+        
+<!--
+        <div class="UI">
+            <div class="Columns"><p>GT VR Tour 1.1</p><p id="display-coord">Click "Step 1. Get my location" to retrieve your coordinate.</p></div>
+        </div>
+-->
 
         <div class="AFrameHTML">
 
@@ -73,29 +79,29 @@ require('aframe-aterrain-component');
                 <a-entity light="type: directional; color: #FFF; intensity: 0.3" position="-0.5 3 -1"></a-entity>
                 <a-entity light="type: directional; color: #FFF; intensity: 0.3" position="0.5 3 1"></a-entity>
                 <!--                        <a-sky color="#6EBAA7"></a-sky>-->
-<!--                <a-scene>-->
-                    <a-assets>
-                        <img id="sky" src="assets/sky/purple-cyan-linear-gradient-1920x1080-c2-27b3b6-ff00ff-a-90-f-14.png">
-                    </a-assets>
-                    <a-sky src="#sky"></a-sky>
-<!--                </a-scene>-->
+                <!--                <a-scene>-->
+                <a-assets>
+                    <img id="sky" src="assets/sky/purple-cyan-linear-gradient-1920x1080-c2-27b3b6-ff00ff-a-90-f-14.png">
+                </a-assets>
+                <a-sky src="#sky"></a-sky>
+                <!--                </a-scene>-->
                 <!--            Camera-->
                 <!--            https://stackoverflow.com/questions/36677671/aframe-set-camera-position-at-runtime-->
                 <!--            <a-entity id='cameraWrapper' position="-5.65955084199 -1 4.05578223457">-->
                 <a-entity id='cameraWrapper' position="8.5 -2.3 4">
                     <a-camera></a-camera>
                 </a-entity>
-                
+
                 <a-assets>
                     <a-asset-item id="gatech-lb-gltf" src="Models/Exported-GLTF/GT-Massing-and-Model-NoMassingTerrain.gltf"></a-asset-item>
                 </a-assets>
                 <a-entity gltf-model="#gatech-lb-gltf" modify-materials></a-entity>
-                
-<!--
-                <a-assets>
-                    <a-asset-item id="gatech-mascot" src="Models/Exported-GLTF/mascot.gltf"></a-asset-item>
-                </a-assets>
-                <a-entity gltf-model="#gatech-mascot" modify-materials></a-entity>
+
+                <!--
+<a-assets>
+<a-asset-item id="gatech-mascot" src="Models/Exported-GLTF/mascot.gltf"></a-asset-item>
+</a-assets>
+<a-entity gltf-model="#gatech-mascot" modify-materials></a-entity>
 -->
 
 
@@ -191,9 +197,9 @@ require('aframe-aterrain-component');
                 </a-entity>
                 <a-box material="src:#tex1" scale="0.5 0.5 0.5" position="0 0.5 -4" id="box" visible="false"></a-box>
 
-<!--                Coca-Cola-->
+                <!--                Coca-Cola-->
                 <a-entity text-geometry="value: COKE; size: 0.75" material="color: red" rotation="0 180 0" position="3.55 5.13 24.24"></a-entity>
-                
+
                 <a-entity text-geometry="value: WELLS; size: 0.35" material="color: orange" rotation="0 180 0" position="-7.85 -1 12.5"></a-entity>
                 <a-entity text-geometry="value: FARGO; size: 0.35" material="color: orange" rotation="0 180 0" position="-7.85 -1.5 12.5"></a-entity>
 
@@ -204,9 +210,9 @@ require('aframe-aterrain-component');
                 <a-entity text-geometry="value: Futuristic campus tour experience; size: 0.32" material="color: #1879DB" rotation="0 45 0" position="-7 2 1"></a-entity>
 
                 <a-entity text-geometry="value: 5.6.2021; size: 0.5" material="color: #B3A369" rotation="0 45 0" position="-7 1 1"></a-entity>
-                
+
                 <a-entity text-geometry="value: BUNGER-HENRY BUILDING; size: 0.25" material="color: #dfdfdf" rotation="0 90 0" position="-6 -1.3 -7.5"></a-entity>
-                
+
                 <a-entity id="menu" class="screen dark mid" htmlembed="ppu:600" position="-5.5 -1.3 -10.5" rotation="0 180 0">
                     <h2>Bunger-Henry Building</h2>
                     <h3>School of Electrical and Computer Engineering</h3>
@@ -215,15 +221,15 @@ require('aframe-aterrain-component');
                     <ul>
                         <li><a onclick="setCamera()" href="https://www.ece.gatech.edu/" class="button">Learn more about ECE</a></li>
                     </ul>
-                    <p>Be sure to wear a mask!</p>
+                    <p>Mask is recommended.</p>
                 </a-entity>
 
-<!--
-                <a-entity text-geometry="value: 4.19.2021; size: 1" material="color: #B3A369" rotation="0 20 0" position="-7 -0.75 1"></a-entity>
+                <!--
+<a-entity text-geometry="value: 4.19.2021; size: 1" material="color: #B3A369" rotation="0 20 0" position="-7 -0.75 1"></a-entity>
 
-                <a-entity text-geometry="value: DM MS Defense; size: 0.36" material="color: #717171" rotation="0 55 0" position="-1 -0.17 -1.2"></a-entity>
+<a-entity text-geometry="value: DM MS Defense; size: 0.36" material="color: #717171" rotation="0 55 0" position="-1 -0.17 -1.2"></a-entity>
 
-                <a-entity text-geometry="value: 10:25 AM, ROOM 1; size: 0.3" material="color: #717171" rotation="0 55 0" position="-1 -0.75 -1.2"></a-entity>
+<a-entity text-geometry="value: 10:25 AM, ROOM 1; size: 0.3" material="color: #717171" rotation="0 55 0" position="-1 -0.75 -1.2"></a-entity>
 -->
 
 
@@ -231,6 +237,7 @@ require('aframe-aterrain-component');
 
                 <!--            student center-->
                 <a-entity text-geometry="value: R.I.P. Student Center; size: 0.4" material="color: red" rotation="0 90 0" position="-10 -1.5 7"></a-entity>
+                <a-entity text-geometry="value: (Under Construction. Coming 5.6.2022.); size: 0.4" material="color: white" rotation="0 90 0" position="-10 -0.5 7"></a-entity>
 
                 <a-entity text="value: Campanile Fountain; width: 3; color:#000000" rotation="0 90 0" position="-7.90 -1 -0.9"></a-entity>
                 <a-box color="tomato" depth="0.2" height="0.3" width="1.3" rotation="0 90 0" position="-8 -1 0" material="side: double; transparent: true; opacity: 0.5"></a-box>
@@ -257,36 +264,36 @@ require('aframe-aterrain-component');
                 <a-entity text-geometry="value: CROSLAND; size: 0.08" material="color: #696969" rotation="0 270 0" position="9.79 -0.8 1.6"></a-entity>
                 <a-entity text-geometry="value: TOWER; size: 0.08" material="color: #696969" rotation="0 270 0" position="9.79 -0.95 1.6"></a-entity>
                 <a-entity text="value: (This is a library, too); width: 1.5; color:#eeeeee" rotation="0 270 0" position="9.79 -1.2 2.325"></a-entity>
-                
+
                 <a-entity id="menu" class="screen dark mid" htmlembed="ppu:600" position="10 -0.8 2.5" rotation="0 -45 0">
                     <h2>Come study and hang out!</h2>
                     <p>Closed for renovations and reopened in January 2019, features eight stories of archives, classroom, study, and studio space for Tech’s students, faculty, and staff. Included are spaces and technology for data visualization, high-performance computing, multimedia studies, collaboration, and iterative design.</p>
                     <ul>
                         <li><a onclick="setCamera()" href="http://library.gatech.edu/crosland-meet" class="button">Reserve a breakout room</a></li>
                     </ul>
-                    <p>Be sure to wear a mask!</p>
+                    <p>Mask is recommended.</p>
                 </a-entity>
-                
+
                 <a-entity id="menu" class="screen dark mid" htmlembed="ppu:600" position="12 -1 2.5" rotation="0 45 0">
                     <h2>Come study and hang out!</h2>
                     <p>Closed for renovations and reopened in January 2019, features eight stories of archives, classroom, study, and studio space for Tech’s students, faculty, and staff. Included are spaces and technology for data visualization, high-performance computing, multimedia studies, collaboration, and iterative design.</p>
                     <ul>
                         <li><a onclick="setCamera()" href="http://library.gatech.edu/crosland-meet" class="button">Reserve a breakout room</a></li>
                     </ul>
-                    <p>Be sure to wear a mask!</p>
+                    <p>Mask is recommended.</p>
                 </a-entity>
-                
-<!--                DM-->
+
+                <!--                DM-->
                 <a-entity id="menu" class="screen dark mid" htmlembed="ppu:600" position="7 -1.2 3" rotation="0 115 0">
                     <h2>School of Literature, Media, and Communication</h2>
                     <h3>Humanistic Perspectives in a Technological World</h3>
-                    <p>We defines new models of intellectual inquiry and practice that bring diverse humanistic perspectives to bear on technological invention and innovation.</p>
+                    <p>We define new models of intellectual inquiry and practice that bring diverse humanistic perspectives to bear on technological invention and innovation.</p>
                     <ul>
                         <li><a onclick="setCamera()" href="https://www.lmc.gatech.edu/" class="button">Learn more about School of LMC</a></li>
                         <li><a onclick="setCamera()" href="https://www.facebook.com/lmciacgatech" class="button">Visit LMC's Facebook Page</a></li>
                     </ul>
                 </a-entity>
-                
+
                 <a-box material="src:#tex1" scale="0.5 0.5 0.5" position="0 0.5 -4" id="box" visible="false"></a-box>
 
                 <!--            Tech Tower-->
@@ -309,13 +316,13 @@ require('aframe-aterrain-component');
                 <a-entity text="value: It's actually called Price Gilbert Memorial Library. A BRAND NEW ONE!; width: 2.5; color:#00c97f" rotation="0 180 0" position="7.28 -0.95 -1"></a-entity>
 
                 <a-entity text-geometry="value: THIS IS ALSO A LIBRARY CALLED CLOUGH; size: 0.16" material="color: #2a2a2a" rotation="0 90 0" position="4.74 -1.3 -1"></a-entity>
-                
-<!--                TSRB-->
+
+                <!--                TSRB-->
                 <a-entity text-geometry="value: C; size: 1" material="color: cyan" rotation="0 270 0" position="50.6 10.4 -7.45"></a-entity>
                 <a-entity text-geometry="value: O; size: 1" material="color: cyan" rotation="0 270 0" position="50.6 9.0 -7.45"></a-entity>
                 <a-entity text-geometry="value: D; size: 1" material="color: cyan" rotation="0 270 0" position="50.6 7.6 -7.35"></a-entity>
                 <a-entity text-geometry="value: A; size: 1" material="color: cyan" rotation="0 270 0" position="50.6 6.2 -7.45"></a-entity>
-                
+
                 <a-entity text-geometry="value: TSRB; size: 0.8" material="color: orange" rotation="0 270 0" position="40.6 -0.6 -23"></a-entity>
 
                 <!--            Clough-->
@@ -338,12 +345,12 @@ require('aframe-aterrain-component');
                 <a-entity text="value: On floor 3, we make with meanings.; width: 2; color: #000000;" position="5.38 -1.53 5.778" rotation="0 270 0"></a-entity>
 
                 <a-entity text-geometry="value: DIGITAL MEDIA; size: 0.14" material="color: #0062a3" rotation="0 270 0" position="5.38 -1.38 4.82"></a-entity>
-                
-<!--                Tenth and Home-->
+
+                <!--                Tenth and Home-->
                 <a-entity text-geometry="value: Welcome (home)! This is; size: 0.15" material="color: purple" rotation="0 270 0" position="11 -2.3 -59.11"></a-entity>
                 <a-entity text-geometry="value: TENTH AND HOME; size: 0.25" material="color: gold" rotation="0 270 0" position="11 -2.7 -59.11"></a-entity>
                 <a-entity text-geometry="value: Graduate & Family Housing; size: 0.15" material="color: orange" rotation="0 270 0" position="11 -3 -58.7"></a-entity>
-                
+
                 <a-entity text-geometry="value: TENTH AND HOME; size: 0.4" material="color: gold" rotation="0 0 0" position="6.9 -2.5 -53.6"></a-entity>
                 <a-entity text-geometry="value: Graduate & Family Housing; size: 0.2" material="color: orange" rotation="0 0 0" position="7.5 -2.9 -53.6"></a-entity>
 
@@ -370,11 +377,19 @@ require('aframe-aterrain-component');
             </a-scene>
         </div>
         <div class="UI">
-            <div class="Columns"><a onclick="getLocation()" href="#" class="button">Step 1. Get my location</a>
-                <a onclick="setCamera()" href="#" class="button">Step 2. Position me on the virtual map</a><a href="#" onclick="birdView()"> Bird view</a> <a href="#" onclick="POVView()"> POV view</a></div>
+            <div class="Columns">
+<!--                <a onclick="getLocation()" href="#" class="button">Step 1. Get my location</a>-->
+                <a onclick="setCamera()" href="#" class="button">Update my position</a>
+                <a onclick="birdView()" href="#" class="button">Update - with Bird view</a>
+                <a onclick="POVView()" href="#" class="button">Update - with POV view</a>
+<!--
+                <a href="#" onclick="birdView()"> Update with Bird view</a>
+                <a href="#" onclick="POVView()"> Update with POV view</a>
+-->
+            </div>
 
             <div class="Columns">
-                GT VR Tour | Developer Beta | 3D Model provided by IMAGINE lab.
+                GT VR Tour | Ver 1.1 Beta | 3D Model provided by the IMAGINE lab.
                 <div><a href="mailto:junshu@gatech.edu?subject=My Feedback For GT VR Tour"> Feedback?</a>
                     <a href="about-us.html">About us</a></div>
 
