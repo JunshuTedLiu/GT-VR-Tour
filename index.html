@@ -5,6 +5,20 @@
         <script src="https://unpkg.com/aframe-text-geometry-component@^0.5.0/dist/aframe-text-geometry-component.min.js"></script> 
 
         <script src="index.js"></script>
+        
+<!--        https://aframe.io/docs/0.4.0/guides/using-javascript-and-dom-apis.html-->
+<!--
+        <script>
+            AFRAME.registerComponent('log', {
+  schema: {type: 'string'},
+
+  init: function () {
+    var stringToLog = this.data;
+    console.log(stringToLog);
+  }
+});
+        </script>
+-->
 
         <script>
             AFRAME.registerComponent('modify-materials', {
@@ -58,6 +72,9 @@ require('aframe-aterrain-component');
                 }
             });
         </script>
+        
+        <!-- Load an icon library to show a hamburger menu (bars) on small screens -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
         <title>GT VR Tour</title>
 
@@ -66,14 +83,35 @@ require('aframe-aterrain-component');
     <body onload="getLocation()">
         
 <!--
-        <div class="UI">
-            <div class="Columns"><p>GT VR Tour 1.1</p><p id="display-coord">Click "Step 1. Get my location" to retrieve your coordinate.</p></div>
+        <div class="top">
+            <div class="Columns">
+                <p>GT VR Tour</p>
+                <div class="Columns">
+                    <a href="about-us.html">Change Theme</a>
+                </div>
+            </div>
         </div>
 -->
+        
+        <!-- Top Navigation Menu -->
+<div class="topnav">
+  <a href="index.html" class="active">GT VR Tour</a>
+  <!-- Navigation links (hidden by default) -->
+  <div id="myLinks">
+    <a class="isDisabled" href="#news">Change Theme:</a>
+    <a href="#about">Sunny (Default)</a>
+    <a href="javascript:changeSkyToClassic();">2021 Classic</a>
+    <a class="isDisabled" href="#news">More theme coming soon!</a>
+  </div>
+  <!-- "Hamburger menu" / "Bar icon" to toggle the navigation links -->
+  <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+    <i class="fa fa-bars"></i>
+  </a>
+</div>
 
         <div class="AFrameHTML">
 
-            <a-scene embedded background="color: #000099" light="defaultLightsEnabled: false">
+            <a-scene inspector="url: https://aframe-inspector-20181128-abjyfktcpl.now.sh/aframe-inspector.min.js" embedded background="color: #000099" light="defaultLightsEnabled: false">
                 <a-entity light="type: ambient; color: #BBB"></a-entity>
                 <a-entity light="type: directional; color: #FFF; intensity: 0.4" position="-0.5 3 1"></a-entity>
                 <a-entity light="type: directional; color: #FFF; intensity: 0.4" position="0.5 3 -1"></a-entity>
@@ -82,7 +120,8 @@ require('aframe-aterrain-component');
                 <!--                        <a-sky color="#6EBAA7"></a-sky>-->
                 <!--                <a-scene>-->
                 <a-assets>
-                    <img id="sky" src="assets/sky/purple-cyan-linear-gradient-1920x1080-c2-27b3b6-ff00ff-a-90-f-14.png">
+<!--                    <img id="sky" src="assets/sky/purple-cyan-linear-gradient-1920x1080-c2-27b3b6-ff00ff-a-90-f-14.png">-->
+                    <img id="sky" src="assets/sky/Sky-Clear.png">
                 </a-assets>
                 <a-sky src="#sky"></a-sky>
                 <!--                </a-scene>-->
@@ -95,8 +134,16 @@ require('aframe-aterrain-component');
 
                 <a-assets>
                     <a-asset-item id="gatech-lb-gltf" src="Models/Exported-GLTF/GT-Massing-and-Model-NoMassingTerrain.gltf"></a-asset-item>
+<!--                    <a-asset-item id="gatech-lb-gltf-terrain" src="Models/Exported-GLTF/GTMassing-v1-mod-T-ONLY.gltf"></a-asset-item>-->
                 </a-assets>
+                
                 <a-entity gltf-model="#gatech-lb-gltf" modify-materials></a-entity>
+                <a-entity
+                          gltf-model="#gatech-lb-gltf-terrain"
+                          material="transparent: true; opacity: 0.7"
+                          modify-materials>
+<!--                    to be solved.-->
+                </a-entity>
 
                 <!--
 <a-assets>
@@ -210,7 +257,7 @@ require('aframe-aterrain-component');
 
                 <a-entity text-geometry="value: Futuristic campus tour experience; size: 0.32" material="color: #1879DB" rotation="0 45 0" position="-7 2 1"></a-entity>
 
-                <a-entity text-geometry="value: 5.6.2021; size: 0.5" material="color: #B3A369" rotation="0 45 0" position="-7 1 1"></a-entity>
+                <a-entity text-geometry="value: Anniversary Update; size: 0.5" material="color: #B3A369" rotation="0 45 0" position="-7 1 1"></a-entity>
 
                 <a-entity text-geometry="value: BUNGER-HENRY BUILDING; size: 0.25" material="color: #dfdfdf" rotation="0 90 0" position="-6 -1.3 -7.5"></a-entity>
 
@@ -238,7 +285,7 @@ require('aframe-aterrain-component');
 
                 <!--            student center-->
                 <a-entity text-geometry="value: R.I.P. Student Center; size: 0.4" material="color: red" rotation="0 90 0" position="-10 -1.5 7"></a-entity>
-                <a-entity text-geometry="value: (Under Construction. Coming 5.6.2022.); size: 0.4" material="color: white" rotation="0 90 0" position="-10 -0.5 7"></a-entity>
+                <a-entity text-geometry="value: (UNDER CONSTRUCTION); size: 0.4" material="color: white" rotation="0 90 0" position="-10 -0.5 7"></a-entity>
 
                 <a-entity text="value: Campanile Fountain; width: 3; color:#000000" rotation="0 90 0" position="-7.90 -1 -0.9"></a-entity>
                 <a-box color="tomato" depth="0.2" height="0.3" width="1.3" rotation="0 90 0" position="-8 -1 0" material="side: double; transparent: true; opacity: 0.5"></a-box>
@@ -375,14 +422,23 @@ require('aframe-aterrain-component');
                 <!--  <a-video src="#this-is-the-place" width="16" height="9" position="0 3 -20"></a-video>-->
                 <!--            Source: https://youtu.be/UzjeXIjJ6sI-->
 
+<!--                grid-->
+<!--
+                <a-assets>
+                    <img id="my-image" src="assets/grid-png-43563.png">
+                </a-assets>
+                
+                <a-image src="#my-image"></a-image>
+-->
+                
             </a-scene>
         </div>
         <div class="UI">
             <div class="Columns">
 <!--                <a onclick="getLocation()" href="#" class="button">Step 1. Get my location</a>-->
                 <a onclick="setCamera()" href="#" class="button">Update my position</a>
-                <a onclick="birdView()" href="#" class="button">Update - with Bird view</a>
-                <a onclick="POVView()" href="#" class="button">Update - with POV view</a>
+                <a onclick="birdView()" href="#" class="button">Bird view</a>
+                <a onclick="POVView()" href="#" class="button">POV view</a>
 <!--
                 <a href="#" onclick="birdView()"> Update with Bird view</a>
                 <a href="#" onclick="POVView()"> Update with POV view</a>
@@ -390,7 +446,7 @@ require('aframe-aterrain-component');
             </div>
 
             <div class="Columns">
-                GT VR Tour | Ver 1.1 Beta | 3D Model provided by the IMAGINE lab.
+                GT VR Tour | Ver 1.1 Beta | Anniversary Update 2022
                 <div><a href="mailto:junshu@gatech.edu?subject=My Feedback For GT VR Tour"> Feedback?</a>
                     <a href="about-us.html">About us</a></div>
 

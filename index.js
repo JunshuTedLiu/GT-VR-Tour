@@ -106,3 +106,27 @@ function POVView() {
     noLocationAlert();
     document.querySelector('#cameraWrapper').setAttribute('position', {x:lonToAFrame, y:-3.25, z:latToAFrame});
 }
+
+//change sky
+function changeSkyToClassic() {
+//    $("#sky").attr("src", "assets/sky/purple-cyan-linear-gradient-1920x1080-c2-27b3b6-ff00ff-a-90-f-14.png")
+    
+    
+    console.log("Changing the sky color.")
+    
+
+    document.querySelector('sky').setAttribute('src', '/assets/sky/purple-cyan-linear-gradient-1920x1080-c2-27b3b6-ff00ff-a-90-f-14.png');
+}
+
+
+//navbar
+
+/* Toggle between showing and hiding the navigation menu links when the user clicks on the hamburger menu / bar icon */
+function myFunction() {
+  var x = document.getElementById("myLinks");
+  if (x.style.display === "block") {
+    x.style.display = "none";
+  } else {
+    x.style.display = "block";
+  }
+}

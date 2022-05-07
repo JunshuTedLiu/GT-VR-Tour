@@ -1,4 +1,4 @@
 {
     "liveFrame.title": "GT VR Tour - Local Development",
-    "liveFrame.url": "http://localhost:3000"
+    "liveFrame.url": "http://127.0.0.1:3000"
 }
