@@ -10,9 +10,9 @@ var lonToAFrame = 8.5;
 
 function getLocation() {
     if (navigator.geolocation) {
-//        navigator.geolocation.getCurrentPosition(showPosition);
+        //        navigator.geolocation.getCurrentPosition(showPosition);
         navigator.geolocation.watchPosition(showPosition);
-//        console.log(`Latitute: ${lat}, Longitude: ${lon}`);
+        //        console.log(`Latitute: ${lat}, Longitude: ${lon}`);
     } else { 
         x.innerHTML = "Geolocation is not supported by this browser.";
     }
@@ -83,7 +83,7 @@ function setCamera() {
 
     //    document.getElementById('cameraWrapper').setAttribute('position', {x:lonToAFrame, y:0, z:latToAFrame});
 
-    //    ONLY WORKS ONCE
+    //    ONLY WORKS ONCE --update: fixed since using watchPosition.
     document.querySelector('#cameraWrapper').setAttribute('position', {x:lonToAFrame, y:-2.3, z:latToAFrame});
 
     //    document.querySelector('#cameraWrapper').setAttribute('position', {x:0, y:0, z:0});
@@ -91,31 +91,78 @@ function setCamera() {
     console.log("Camera updated.");
 }
 
+// Another potential solution for off-campus users. Only changing the value y, for the BIRD VIEW and POV VIEW button.
+//var pos;
+//var cameraEl;
+//var worldPos;
+
+//function getCamera() {
+//    pos = document.querySelector('#cameraWrapper').getAttribute('position');
+//    console.log("pos updated.")
+//
+//    cameraEl = document.querySelector('#cameraWrapper');
+//    worldPos = new THREE.Vector3();
+//    worldPos.setFromMatrixPosition(cameraEl.object3D.matrixWorld);
+//    console.log(worldPos.x);
+//
+//    cameraEl.addEventListener('componentchanged', function (evt) {
+//        if (evt.detail.name !== 'position') { return; }
+//        console.log(evt.detail.newData);
+//    });
+//}
+
+//AFRAME.registerComponent('camera-listener', {
+//  tick: function () {
+//    var cameraEl = this.el.sceneEl.camera.el;
+//    cameraEl.getAttribute('position');
+//    cameraEl.getAttribute('rotation');
+//
+//    // Do something.
+//  }
+//});
+
 function noLocationAlert() {
     if (lat === undefined && lon === undefined)  {
         alert("Location retrieving. Please wait.")
     }
 }
 
+function onCampusOrNot() {
+    if (confirm('Are you on campus? If so, press "OK" to position yourself in the VR space. If not, press "cancel" and browse the VR space with arrow keys.')) {
+        setCamera();
+  console.log('On-campus user. Position updated.');
+} else {
+  // Do nothing!
+  console.log('Off-campus user. Position not updated.');
+}
+}
+
+//function defaultView() {
+//    document.querySelector('#cameraWrapper').setAttribute('position', {x:8.5, y:-2.3, z:4});
+//}
+
 function birdView() {
-    noLocationAlert();
-    document.querySelector('#cameraWrapper').setAttribute('position', {x:lonToAFrame, y:-2, z:latToAFrame});
+//    noLocationAlert();
+//    document.querySelector('#cameraWrapper').setAttribute('position', {x:lonToAFrame, y:-2, z:latToAFrame});
+    document.querySelector('#cameraWrapper').setAttribute('position', {x:8.5, y:-2, z:4});
 }
 
 function POVView() {
-    noLocationAlert();
-    document.querySelector('#cameraWrapper').setAttribute('position', {x:lonToAFrame, y:-3.25, z:latToAFrame});
+//    noLocationAlert();
+//    document.querySelector('#cameraWrapper').setAttribute('position', {x:lonToAFrame, y:-3.25, z:latToAFrame});
+    document.querySelector('#cameraWrapper').setAttribute('position', {x:8.5, y:-3.25, z:4});
 }
 
 //change sky
-function changeSkyToClassic() {
-//    $("#sky").attr("src", "assets/sky/purple-cyan-linear-gradient-1920x1080-c2-27b3b6-ff00ff-a-90-f-14.png")
-    
-    
-    console.log("Changing the sky color.")
-    
+function changeSkyTo(imageID) {
+    //    $("#sky").attr("src", "assets/sky/purple-cyan-linear-gradient-1920x1080-c2-27b3b6-ff00ff-a-90-f-14.png")
 
-    document.querySelector('sky').setAttribute('src', '/assets/sky/purple-cyan-linear-gradient-1920x1080-c2-27b3b6-ff00ff-a-90-f-14.png');
+
+    console.log("Changing the sky color to " + imageID)
+
+
+    //    document.querySelector('#sky').setAttribute('src', '/assets/sky/purple-cyan-linear-gradient-1920x1080-c2-27b3b6-ff00ff-a-90-f-14.png');
+    document.querySelector('#sky').setAttribute('src', imageID);
 }
 
 
@@ -123,10 +170,10 @@ function changeSkyToClassic() {
 
 /* Toggle between showing and hiding the navigation menu links when the user clicks on the hamburger menu / bar icon */
 function myFunction() {
-  var x = document.getElementById("myLinks");
-  if (x.style.display === "block") {
-    x.style.display = "none";
-  } else {
-    x.style.display = "block";
-  }
+    var x = document.getElementById("myLinks");
+    if (x.style.display === "block") {
+        x.style.display = "none";
+    } else {
+        x.style.display = "block";
+    }
 }

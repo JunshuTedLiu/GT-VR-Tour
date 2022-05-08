@@ -5,19 +5,19 @@
         <script src="https://unpkg.com/aframe-text-geometry-component@^0.5.0/dist/aframe-text-geometry-component.min.js"></script> 
 
         <script src="index.js"></script>
-        
-<!--        https://aframe.io/docs/0.4.0/guides/using-javascript-and-dom-apis.html-->
-<!--
-        <script>
-            AFRAME.registerComponent('log', {
-  schema: {type: 'string'},
 
-  init: function () {
-    var stringToLog = this.data;
-    console.log(stringToLog);
-  }
+        <!--        https://aframe.io/docs/0.4.0/guides/using-javascript-and-dom-apis.html-->
+        <!--
+<script>
+AFRAME.registerComponent('log', {
+schema: {type: 'string'},
+
+init: function () {
+var stringToLog = this.data;
+console.log(stringToLog);
+}
 });
-        </script>
+</script>
 -->
 
         <script>
@@ -72,42 +72,45 @@ require('aframe-aterrain-component');
                 }
             });
         </script>
-        
+
         <!-- Load an icon library to show a hamburger menu (bars) on small screens -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
         <title>GT VR Tour</title>
 
     </head>
     <!--    <body onload="getLocation(); setCamera()">-->
     <body onload="getLocation()">
-        
-<!--
-        <div class="top">
-            <div class="Columns">
-                <p>GT VR Tour</p>
-                <div class="Columns">
-                    <a href="about-us.html">Change Theme</a>
-                </div>
-            </div>
-        </div>
--->
-        
-        <!-- Top Navigation Menu -->
-<div class="topnav">
-  <a href="index.html" class="active">GT VR Tour</a>
-  <!-- Navigation links (hidden by default) -->
-  <div id="myLinks">
-    <a class="isDisabled" href="#news">Change Theme:</a>
-    <a href="#about">Sunny (Default)</a>
-    <a href="javascript:changeSkyToClassic();">2021 Classic</a>
-    <a class="isDisabled" href="#news">More theme coming soon!</a>
-  </div>
-  <!-- "Hamburger menu" / "Bar icon" to toggle the navigation links -->
-  <a href="javascript:void(0);" class="icon" onclick="myFunction()">
-    <i class="fa fa-bars"></i>
-  </a>
+
+        <!--
+<div class="top">
+<div class="Columns">
+<p>GT VR Tour</p>
+<div class="Columns">
+<a href="about-us.html">Change Theme</a>
 </div>
+</div>
+</div>
+-->
+
+        <!-- Top Navigation Menu -->
+        <div class="topnav">
+            <a href="index.html" class="active">GT VR Tour</a>
+            <!-- Navigation links (hidden by default) -->
+            <div id="myLinks">
+                <a class="isDisabled" href="#news">Change Theme:</a>
+                <a href="javascript:changeSkyTo('#clear');">Sunny (Default)</a>
+                <a href="javascript:changeSkyTo('#clear1');">Sunny (Alternative)</a>
+                <a href="javascript:changeSkyTo('#iridescent');">Iridescent</a>
+                <a href="javascript:changeSkyTo('#night');">Night</a>
+                <a href="javascript:changeSkyTo('#classic');">2021 Classic</a>
+                <a class="isDisabled" href="#news">More theme coming soon!</a>
+            </div>
+            <!-- "Hamburger menu" / "Bar icon" to toggle the navigation links -->
+            <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+                <i class="fa fa-bars"></i>
+            </a>
+        </div>
 
         <div class="AFrameHTML">
 
@@ -120,10 +123,18 @@ require('aframe-aterrain-component');
                 <!--                        <a-sky color="#6EBAA7"></a-sky>-->
                 <!--                <a-scene>-->
                 <a-assets>
-<!--                    <img id="sky" src="assets/sky/purple-cyan-linear-gradient-1920x1080-c2-27b3b6-ff00ff-a-90-f-14.png">-->
-                    <img id="sky" src="assets/sky/Sky-Clear.png">
+                    <img id="classic" src="assets/sky/purple-cyan-linear-gradient-1920x1080-c2-27b3b6-ff00ff-a-90-f-14.png">
+                    <img id="clear" src="assets/sky/Sky-Clear.png">
+                    <img id="clear1" src="assets/sky/Sky-Clear-1.png">
+                    <img id="iridescent" src="assets/sky/Iridescent.png">
+                    <img id="night" src="assets/sky/Night.png">
                 </a-assets>
-                <a-sky src="#sky"></a-sky>
+                
+                <a-sky id="sky" src="#clear"></a-sky>
+                
+<!--                sky, take 2-->
+                <a-entity></a-entity>
+                
                 <!--                </a-scene>-->
                 <!--            Camera-->
                 <!--            https://stackoverflow.com/questions/36677671/aframe-set-camera-position-at-runtime-->
@@ -134,15 +145,15 @@ require('aframe-aterrain-component');
 
                 <a-assets>
                     <a-asset-item id="gatech-lb-gltf" src="Models/Exported-GLTF/GT-Massing-and-Model-NoMassingTerrain.gltf"></a-asset-item>
-<!--                    <a-asset-item id="gatech-lb-gltf-terrain" src="Models/Exported-GLTF/GTMassing-v1-mod-T-ONLY.gltf"></a-asset-item>-->
+                    <!--                    <a-asset-item id="gatech-lb-gltf-terrain" src="Models/Exported-GLTF/GTMassing-v1-mod-T-ONLY.gltf"></a-asset-item>-->
                 </a-assets>
-                
+
                 <a-entity gltf-model="#gatech-lb-gltf" modify-materials></a-entity>
                 <a-entity
                           gltf-model="#gatech-lb-gltf-terrain"
                           material="transparent: true; opacity: 0.7"
                           modify-materials>
-<!--                    to be solved.-->
+                    <!--                    to be solved.-->
                 </a-entity>
 
                 <!--
@@ -196,8 +207,9 @@ require('aframe-aterrain-component');
                         <!--            <p>Twitter embed example:</p>-->
                         <!--            <blockquote class="twitter-tweet"><p lang="en" dir="ltr">Please note: Crosland Tower and Clough Undergraduate Learning Commons are closed. Library virtual services are available 24/7 until further notice. For full information, visit: <a href="https://t.co/gTU9CcyRdy">https://t.co/gTU9CcyRdy</a></p>&mdash; GT Clough Commons (@GTClough) <a href="https://twitter.com/GTClough/status/1243508324185841666?ref_src=twsrc%5Etfw">March 27, 2020</a></blockquote>-->
                         <a class="twitter-timeline" href="https://twitter.com/gtclough" data-tweet-limit="1" data-width="399" ></a>
-                        <a href="#slide2" class="button next">Next Page</a>
+<!--                        <a href="#slide2" class="button next">Next Page</a>-->
                     </div>
+<!--
                     <div id="page2">
                         <p>Coming soon! The following pages are just for testing.</p>
                         <p>Twitter:</p>
@@ -222,6 +234,7 @@ require('aframe-aterrain-component');
                         </ul>
                         <a href="#slide3" class="button prev">Prev Page</a>
                     </div>
+-->
                 </a-entity>
                 <!--
 <a-entity id="menu" class="screen menu dark" htmlembed="ppu:256" position="2.712 2.5 -4.476" rotation="0 -45 0">
@@ -255,9 +268,10 @@ require('aframe-aterrain-component');
                 <!--            Package: https://www.npmjs.com/package/aframe-text-geometry-component-->
                 <a-entity text-geometry="value: GT VR Tour; size: 2" material="color: #EAAA00" rotation="0 70 0" position="-7 3.5 1"></a-entity>
 
-                <a-entity text-geometry="value: Futuristic campus tour experience; size: 0.32" material="color: #1879DB" rotation="0 45 0" position="-7 2 1"></a-entity>
+                <a-entity text-geometry="value: Location-based VR campus tour; size: 0.32" material="color: #1879DB" rotation="0 45 0" position="-7 2 1"></a-entity>
 
                 <a-entity text-geometry="value: Anniversary Update; size: 0.5" material="color: #B3A369" rotation="0 45 0" position="-7 1 1"></a-entity>
+                <a-entity text-geometry="value: 5.6.2022 Version 1.1; size: 0.25" material="color: #B3A369" rotation="0 45 0" position="-7 0.5 1"></a-entity>
 
                 <a-entity text-geometry="value: BUNGER-HENRY BUILDING; size: 0.25" material="color: #dfdfdf" rotation="0 90 0" position="-6 -1.3 -7.5"></a-entity>
 
@@ -267,7 +281,7 @@ require('aframe-aterrain-component');
                     <p>Microsystems and optics and photonics research takes place here.</p>
                     <p>778 Atlantic Drive NW, Atlanta, GA  30332</p>
                     <ul>
-                        <li><a onclick="setCamera()" href="https://www.ece.gatech.edu/" class="button">Learn more about ECE</a></li>
+                        <li><a href="https://www.ece.gatech.edu/" class="button">Learn more about ECE</a></li>
                     </ul>
                     <p>Mask is recommended.</p>
                 </a-entity>
@@ -317,7 +331,7 @@ require('aframe-aterrain-component');
                     <h2>Come study and hang out!</h2>
                     <p>Closed for renovations and reopened in January 2019, features eight stories of archives, classroom, study, and studio space for Tech’s students, faculty, and staff. Included are spaces and technology for data visualization, high-performance computing, multimedia studies, collaboration, and iterative design.</p>
                     <ul>
-                        <li><a onclick="setCamera()" href="http://library.gatech.edu/crosland-meet" class="button">Reserve a breakout room</a></li>
+                        <li><a href="http://library.gatech.edu/crosland-meet" class="button">Reserve a breakout room</a></li>
                     </ul>
                     <p>Mask is recommended.</p>
                 </a-entity>
@@ -326,7 +340,7 @@ require('aframe-aterrain-component');
                     <h2>Come study and hang out!</h2>
                     <p>Closed for renovations and reopened in January 2019, features eight stories of archives, classroom, study, and studio space for Tech’s students, faculty, and staff. Included are spaces and technology for data visualization, high-performance computing, multimedia studies, collaboration, and iterative design.</p>
                     <ul>
-                        <li><a onclick="setCamera()" href="http://library.gatech.edu/crosland-meet" class="button">Reserve a breakout room</a></li>
+                        <li><a href="http://library.gatech.edu/crosland-meet" class="button">Reserve a breakout room</a></li>
                     </ul>
                     <p>Mask is recommended.</p>
                 </a-entity>
@@ -337,8 +351,8 @@ require('aframe-aterrain-component');
                     <h3>Humanistic Perspectives in a Technological World</h3>
                     <p>We define new models of intellectual inquiry and practice that bring diverse humanistic perspectives to bear on technological invention and innovation.</p>
                     <ul>
-                        <li><a onclick="setCamera()" href="https://www.lmc.gatech.edu/" class="button">Learn more about School of LMC</a></li>
-                        <li><a onclick="setCamera()" href="https://www.facebook.com/lmciacgatech" class="button">Visit LMC's Facebook Page</a></li>
+                        <li><a href="https://www.lmc.gatech.edu/" class="button">Learn more about School of LMC</a></li>
+                        <li><a href="https://www.facebook.com/lmciacgatech" class="button">Visit LMC's Facebook Page</a></li>
                     </ul>
                 </a-entity>
 
@@ -422,26 +436,27 @@ require('aframe-aterrain-component');
                 <!--  <a-video src="#this-is-the-place" width="16" height="9" position="0 3 -20"></a-video>-->
                 <!--            Source: https://youtu.be/UzjeXIjJ6sI-->
 
-<!--                grid-->
-<!--
-                <a-assets>
-                    <img id="my-image" src="assets/grid-png-43563.png">
-                </a-assets>
-                
-                <a-image src="#my-image"></a-image>
+                <!--                grid-->
+                <!--
+<a-assets>
+<img id="my-image" src="assets/grid-png-43563.png">
+</a-assets>
+
+<a-image src="#my-image"></a-image>
 -->
-                
+
             </a-scene>
         </div>
         <div class="UI">
             <div class="Columns">
-<!--                <a onclick="getLocation()" href="#" class="button">Step 1. Get my location</a>-->
-                <a onclick="setCamera()" href="#" class="button">Update my position</a>
+                <!--                <a onclick="getLocation()" href="#" class="button">Step 1. Get my location</a>-->
+                <a onclick="onCampusOrNot()" href="#" class="button">Where am I?</a>
+<!--                <a onclick="defaultView()" href="#" class="button">Default view</a>-->
                 <a onclick="birdView()" href="#" class="button">Bird view</a>
                 <a onclick="POVView()" href="#" class="button">POV view</a>
-<!--
-                <a href="#" onclick="birdView()"> Update with Bird view</a>
-                <a href="#" onclick="POVView()"> Update with POV view</a>
+                <!--
+<a href="#" onclick="birdView()"> Update with Bird view</a>
+<a href="#" onclick="POVView()"> Update with POV view</a>
 -->
             </div>
 
